@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <td>noOfVancancies:</td>
-        <td></td>
+        <td>{{job.noOfVancancies}}</td>
       </tr>
       <tr>
         <td>jobReferenceNo:</td>
@@ -26,25 +26,35 @@
         <td>{{job.jobTitle}}</td>
       </tr>
       <tr>
-        <td>companyDetails.name:</td>
-        <td></td>
+        <td>companyDetailsName: <b>(Optional)</b></td>
+        <td>
+          <span *ngIf="job.companyDetailsName === ''">N/A</span>
+          {{job.companyDetailsName}}
+        </td>
       </tr>
       <tr>
-        <td>companyDetails.imageUrl</td>
-        <td></td>
+        <td>companyDetailsImageUrl: <b>(Optional)</b></td>
+        <td>
+          <span *ngIf="job.companyDetailsImageUrl === ''">N/A</span>
+          {{job.companyDetailsImageUrl}}
+        </td>
       </tr>
       <tr>
-        <td>jobRequirements:</td>
-        <td></td>
+        <td>jobRequirements: <b>(Optional)</b></td>
+        <td>
+          <span *ngIf="job.jobRequirements === ''">N/A</span>
+          {{job.jobRequirements}}
+        </td>
       </tr>
       <tr>
         <td>noOfYearsOfExperiences:</td>
-        <td></td>
+        <td>{{job.noOfYearsOfExperiences}}</td>
       </tr>
       <tr>
-        <td>jobFunctions:</td>
+        <td>jobFunctions: <b>(Optional)</b></td>
         <td>
-          <ul>
+          <span *ngIf="job.jobFunctions.length === 0">N/A</span>
+          <ul *ngIf="job.jobFunctions.length > 0">
             <li *ngFor="let jf of job.jobFunctions">{{jf.name}}</li>
           </ul>
         </td>
@@ -83,11 +93,11 @@
         </td>
       </tr>
       <tr>
-        <td>companyDetails.name:</td>
+        <td>companyDetailsName:</td>
         <td></td>
       </tr>
       <tr>
-        <td>companyDetails.imageUrl:</td>
+        <td>companyDetailsImageUrl:</td>
         <td></td>
       </tr>
       <tr>

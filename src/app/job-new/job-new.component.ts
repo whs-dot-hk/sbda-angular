@@ -27,10 +27,27 @@ export class JobNewComponent implements OnInit {
       this.errorMessage = 'Error: jobTitle is required.'
       return;
     }
-    this.jobService.addJob({ jobTitle: newJobTitle, jobFunctions: this.newJobFunctions } as Job)
-      .subscribe(job => {
-        this.errorMessage = `Job ${job.jobReferenceNo} added.`;
-      });
+    this.jobService.addJob({
+      noOfVancancies: this.newNoOfVancancies,
+      jobTitle: newJobTitle,
+      companyDetailsName: newCompanyDetailsName,
+      companyDetailsImageUrl: newCompanyDetailsImageUrl,
+      jobRequirements: newJobRequirements,
+      noOfYearsOfExperiences: this.newNoOfYearsOfExperiences,
+      jobFunctions: this.newJobFunctions
+    } as Job)
+      .subscribe(
+        job => {
+          this.errorMessage = `Job ${job.jobReferenceNo} added.`;
+        },
+        _ => {
+          this.errorMessage = 'Error: Failed.';
+        }
+      );
+
+    this.newNoOfVancancies = 1;
+    this.newNoOfYearsOfExperiences = 0;
+
     this.newJobFunctions = [];
   }
 
