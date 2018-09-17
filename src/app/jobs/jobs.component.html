@@ -1,0 +1,20 @@
+<h2>All Jobs</h2>
+<table>
+  <tr>
+    <th>jobTitle:</th>
+    <th>jobReferenceNo:</th>
+    <th>timeStamp:</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let job of jobs">
+    <td>{{job.jobTitle}}</td>
+    <td>{{job.jobReferenceNo}}</td>
+    <td>{{job.timeStamp}}</td>
+    <td><a routerLink="/job/{{job.jobReferenceNo}}">View Job</a></td>
+  </tr>
+</table>
+
+<div *ngIf="jobs.length === 0">
+  No jobs.
+  Add a <a class="link red" routerLink="/job/new">new job</a>.
+</div>

@@ -1,0 +1,65 @@
+<h2>New Job</h2>
+<div *ngIf="errorMessage !== ''" class="mb2 red" [innerHtml]="errorMessage">
+</div>
+<table class="mb4">
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>noOfVancancies:</td>
+    <td>
+      <select [(ngModel)]="newNoOfVancancies">
+        <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
+      </select>
+      {{newNoOfVancancies}}
+    </td>
+  </tr>
+  <tr>
+    <td>jobTitle: <b>(Required)</b></td>
+    <td>
+      <input #inputNewJobTitle placeholder="e.g. Programmer"/>
+    </td>
+  </tr>
+  <tr>
+    <td>companyDetails.name:</td>
+    <td>
+      <input placeholder="e.g. Company ABC" #inputNewCompanyDetailsName />
+    </td>
+  </tr>
+  <tr>
+    <td>companyDetails.imageUrl:</td>
+    <td>
+      <input placeholder="e.g. http://image.url" #inputNewCompanyDetailsImageUrl />
+    </td>
+  </tr>
+  <tr>
+    <td>jobRequirements:</td>
+    <td>
+      <textarea placeholder="Job requirements..." #inputNewJobRequirements></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td>noOfYearsOfExperiences:</td>
+    <td>
+      <select [(ngModel)]="newNoOfYearsOfExperiences">
+        <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
+      </select>
+      {{newNoOfYearsOfExperiences}}
+    </td>
+  </tr>
+  <tr>
+    <td>jobFunctions:</td>
+    <td>
+      <input #inputNewJobFunction class="mr2" placeholder="e.g. Job function 1" />
+      <button (click)="addNewJobFunction(inputNewJobFunction.value); inputNewJobFunction.value=''">add</button>
+      <ul *ngIf="newJobFunctions.length > 0">
+        <li *ngFor="let jf of newJobFunctions">{{jf.name}}</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<div class="tr">
+  <button (click)="addNewJob(inputNewJobTitle.value, inputNewCompanyDetailsName.vale, inputNewCompanyDetailsImageUrl.value, inputNewJobRequirements.value); inputNewJobTitle.value=''">submit</button>
+</div>

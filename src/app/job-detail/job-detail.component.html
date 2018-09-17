@@ -1,0 +1,116 @@
+<h2>Job Details</h2>
+<div *ngIf="job">
+  <div *ngIf="errorMessage !== ''" class="mb2 red">
+    {{errorMessage}}
+  </div>
+  <div *ngIf="!isEditing">
+    <table class="mb4">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>noOfVancancies:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobReferenceNo:</td>
+        <td>{{job.jobReferenceNo}}</td>
+      </tr>
+      <tr>
+        <td>timeStamp:</td>
+        <td>{{job.timeStamp}}</td>
+      </tr>
+      <tr>
+        <td>jobTitle:</td>
+        <td>{{job.jobTitle}}</td>
+      </tr>
+      <tr>
+        <td>companyDetails.name:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>companyDetails.imageUrl</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobRequirements:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>noOfYearsOfExperiences:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobFunctions:</td>
+        <td>
+          <ul>
+            <li *ngFor="let jf of job.jobFunctions">{{jf.name}}</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  
+    <div class="tr">
+      <button class="mr2" (click)="edit()">edit</button>
+      <button (click)="delete()">delete</button>
+    </div>
+  </div>
+
+  <div *ngIf="isEditing">
+    <h3>Editor</h3>
+    <table class="mb4">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>noOfVancancies:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobReferenceNo:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>timeStamp:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobTitle:</td>
+        <td>
+          <input [(ngModel)]="editingJob.jobTitle" />
+        </td>
+      </tr>
+      <tr>
+        <td>companyDetails.name:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>companyDetails.imageUrl:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobRequirements:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>noOfYearsOfExperiences:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>jobFunctions:</td>
+        <td></td>
+      </tr>
+    </table>
+
+    <div class="tr">
+      <button (click)="save()" class="mr2">save</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!job && !isLoading">
+  Job removed.
+</div>
