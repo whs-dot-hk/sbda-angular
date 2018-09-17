@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class JobService {
-  private jobUrl = 'http://localhost:5000/api/job';
+  private jobUrl = 'https://sbda-api.herokuapp.com/api/job';
 
   getJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(this.jobUrl);
