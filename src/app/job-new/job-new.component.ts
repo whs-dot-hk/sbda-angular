@@ -16,7 +16,8 @@ export class JobNewComponent implements OnInit {
   newJobFunctions: JobFunction[] = [];
 
   addNewJobFunction(name: string): void {
-    this.newJobFunctions.push({ name } as JobFunction);
+    var found = this.newJobFunctions.find(x => x.name === name);
+    if (!found) this.newJobFunctions.push({ name } as JobFunction);
   }
 
   errorMessage: string = '';
@@ -49,6 +50,10 @@ export class JobNewComponent implements OnInit {
     this.newNoOfYearsOfExperiences = 0;
 
     this.newJobFunctions = [];
+  }
+
+  removeNewJobFunction(newJobFunction: JobFunction): void {
+    this.newJobFunctions = this.newJobFunctions.filter(jf => jf.name !== newJobFunction.name);
   }
 
   constructor(

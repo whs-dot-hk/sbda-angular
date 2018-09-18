@@ -52,7 +52,7 @@
       <input #inputNewJobFunction class="mr2" placeholder="e.g. Job function 1" />
       <button (click)="addNewJobFunction(inputNewJobFunction.value); inputNewJobFunction.value=''">add</button>
       <ul *ngIf="newJobFunctions.length > 0">
-        <li *ngFor="let jf of newJobFunctions">{{jf.name}}</li>
+        <li *ngFor="let jf of newJobFunctions">{{jf.name}} <button (click)="removeNewJobFunction(jf)">remove</button></li>
       </ul>
     </td>
   </tr>
