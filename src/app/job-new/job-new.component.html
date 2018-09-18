@@ -1,63 +1,63 @@
 <h2>New Job</h2>
 <div *ngIf="errorMessage !== ''" class="mb2 red" [innerHtml]="errorMessage">
 </div>
-<table class="mb4">
-  <tr>
-    <th>Key</th>
-    <th>Value</th>
+<table class="mb4 collapse w-100">
+  <tr class="dn dt-row-l">
+    <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Key</th>
+    <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Value</th>
   </tr>
-  <tr>
-    <td>noOfVancancies:</td>
-    <td>
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfVancancies:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
       <select [(ngModel)]="newNoOfVancancies">
         <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
       </select>
     </td>
   </tr>
-  <tr>
-    <td>jobTitle: <b>(Required)</b></td>
-    <td>
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobTitle: <b>(Required)</b></td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
       <input #inputNewJobTitle placeholder="e.g. Programmer"/>
     </td>
   </tr>
-  <tr>
-    <td>companyDetailsName:</td>
-    <td>
-      <input placeholder="e.g. Company ABC" #inputNewCompanyDetailsName />
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsName:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+      <input placeholder="e.g. Company ABC" [(ngModel)]="newCompanyDetailsName" />
     </td>
   </tr>
-  <tr>
-    <td>companyDetailsImageUrl:</td>
-    <td>
-      <input placeholder="e.g. http://image.url" #inputNewCompanyDetailsImageUrl />
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsImageUrl:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+      <input placeholder="e.g. http://image.url" [(ngModel)]="newCompanyDetailsImageUrl" />
     </td>
   </tr>
-  <tr>
-    <td>jobRequirements:</td>
-    <td>
-      <textarea placeholder="Job requirements..." #inputNewJobRequirements></textarea>
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobRequirements:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+      <textarea placeholder="Job requirements..." [(ngModel)]="newJobRequirements"></textarea>
     </td>
   </tr>
-  <tr>
-    <td>noOfYearsOfExperiences:</td>
-    <td>
+  <tr class="db dt-row-l mb3">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfYearsOfExperiences:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
       <select [(ngModel)]="newNoOfYearsOfExperiences">
         <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
       </select>
     </td>
   </tr>
-  <tr>
-    <td>jobFunctions:</td>
-    <td>
-      <input #inputNewJobFunction class="mr2" placeholder="e.g. Job function 1" />
+  <tr class="db dt-row-l">
+    <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobFunctions:</td>
+    <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+      <input #inputNewJobFunction class="mr2 mb2 mb0-l" placeholder="e.g. Job function 1" />
       <button (click)="addNewJobFunction(inputNewJobFunction.value); inputNewJobFunction.value=''">add</button>
-      <ul *ngIf="newJobFunctions.length > 0">
-        <li *ngFor="let jf of newJobFunctions">{{jf.name}} <button (click)="removeNewJobFunction(jf)">remove</button></li>
+      <ul *ngIf="newJobFunctions.length > 0" class="mv0">
+        <li *ngFor="let jf of newJobFunctions" class="mt2-l"><span class="db dib-l mv2 mv0-l mr2">{{jf.name}}</span> <button (click)="removeNewJobFunction(jf)" class="db dib-l">remove</button></li>
       </ul>
     </td>
   </tr>
 </table>
 
-<div class="tr">
-  <button (click)="addNewJob(inputNewJobTitle.value, inputNewCompanyDetailsName.value, inputNewCompanyDetailsImageUrl.value, inputNewJobRequirements.value); inputNewJobTitle.value=''; inputNewCompanyDetailsName.value=''; inputNewCompanyDetailsImageUrl.value=''; inputNewJobRequirements.value=''; inputNewJobFunction.value=''">submit</button>
+<div class="tr mb3">
+  <button (click)="addNewJob(inputNewJobTitle.value); inputNewJobTitle.value=''; inputNewJobFunction.value=''">submit</button>
 </div>

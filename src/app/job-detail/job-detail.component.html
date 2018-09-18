@@ -4,64 +4,64 @@
     {{errorMessage}}
   </div>
   <div *ngIf="!isEditing">
-    <table class="mb4">
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
+    <table class="mb4 collapse w-100">
+      <tr class="dn dt-row-l">
+        <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Key</th>
+        <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Value</th>
       </tr>
-      <tr>
-        <td>noOfVancancies:</td>
-        <td>{{job.noOfVancancies}}</td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfVancancies:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{job.noOfVancancies}}</td>
       </tr>
-      <tr>
-        <td>jobReferenceNo:</td>
-        <td>{{job.jobReferenceNo}}</td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobReferenceNo:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{job.jobReferenceNo}}</td>
       </tr>
-      <tr>
-        <td>timeStamp:</td>
-        <td>{{job.timeStamp}}</td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">timeStamp:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{job.timeStamp}}</td>
       </tr>
-      <tr>
-        <td>jobTitle:</td>
-        <td>{{job.jobTitle}}</td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobTitle:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{job.jobTitle}}</td>
       </tr>
-      <tr>
-        <td>companyDetailsName: <b>(Optional)</b></td>
-        <td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsName: <b>(Optional)</b></td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
           <span *ngIf="job.companyDetailsName === ''">N/A</span>
           {{job.companyDetailsName}}
         </td>
       </tr>
-      <tr>
-        <td>companyDetailsImageUrl: <b>(Optional)</b></td>
-        <td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsImageUrl: <b>(Optional)</b></td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
           <span *ngIf="job.companyDetailsImageUrl === ''">N/A</span>
           {{job.companyDetailsImageUrl}}
         </td>
       </tr>
-      <tr>
-        <td>jobRequirements: <b>(Optional)</b></td>
-        <td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobRequirements: <b>(Optional)</b></td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
           <span *ngIf="job.jobRequirements === ''">N/A</span>
           {{job.jobRequirements}}
         </td>
       </tr>
-      <tr>
-        <td>noOfYearsOfExperiences:</td>
-        <td>{{job.noOfYearsOfExperiences}}</td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfYearsOfExperiences:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{job.noOfYearsOfExperiences}}</td>
       </tr>
-      <tr>
-        <td>jobFunctions: <b>(Optional)</b></td>
-        <td>
+      <tr class="db dt-row-l">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobFunctions: <b>(Optional)</b></td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
           <span *ngIf="job.jobFunctions.length === 0">N/A</span>
-          <ul *ngIf="job.jobFunctions.length > 0">
+          <ul *ngIf="job.jobFunctions.length > 0" class="mv0">
             <li *ngFor="let jf of job.jobFunctions">{{jf.name}}</li>
           </ul>
         </td>
       </tr>
     </table>
   
-    <div class="tr">
+    <div class="tr mb3">
       <button class="mr2" (click)="edit()">edit</button>
       <button (click)="delete()">delete</button>
     </div>
@@ -69,52 +69,72 @@
 
   <div *ngIf="isEditing">
     <h3>Editor</h3>
-    <table class="mb4">
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
+    <table class="mb4 collapse w-100">
+      <tr class="dn dt-row-l">
+        <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Key</th>
+        <th class="ba-l b--light-gray-l pa3-l w-50-l tl">Value</th>
       </tr>
-      <tr>
-        <td>noOfVancancies:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfVancancies:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+          <select [(ngModel)]="editingJob.noOfVancancies">
+            <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
+          </select>
+        </td>
       </tr>
-      <tr>
-        <td>jobReferenceNo:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobReferenceNo:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{editingJob.jobReferenceNo}}</td>
       </tr>
-      <tr>
-        <td>timeStamp:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">timeStamp:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">{{editingJob.timeStamp}}</td>
       </tr>
-      <tr>
-        <td>jobTitle:</td>
-        <td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobTitle: <b>(Required)</b></td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
           <input [(ngModel)]="editingJob.jobTitle" />
         </td>
       </tr>
-      <tr>
-        <td>companyDetailsName:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsName:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+            <input [(ngModel)]="editingJob.companyDetailsName" />
+        </td>
       </tr>
-      <tr>
-        <td>companyDetailsImageUrl:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">companyDetailsImageUrl:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+          <input [(ngModel)]="editingJob.companyDetailsImageUrl" />
+        </td>
       </tr>
-      <tr>
-        <td>jobRequirements:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobRequirements:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+          <input [(ngModel)]="editingJob.jobRequirements" />
+        </td>
       </tr>
-      <tr>
-        <td>noOfYearsOfExperiences:</td>
-        <td></td>
+      <tr class="db dt-row-l mb3">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">noOfYearsOfExperiences:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+          <select [(ngModel)]="editingJob.noOfYearsOfExperiences">
+            <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" [value]="n">{{n}}</option>
+          </select>
+        </td>
       </tr>
-      <tr>
-        <td>jobFunctions:</td>
-        <td></td>
+      <tr class="db dt-row-l">
+        <td class="db dtc-l mb2 ba-l b--light-gray-l pa3-l w-50-l">jobFunctions:</td>
+        <td class="db dtc-l ba-l b--light-gray-l pa3-l w-50-l">
+          <input #inputNewJobFunction class="mr2 mb2 mb0-l" placeholder="e.g. Job function 1" />
+          <button (click)="addNewJobFunction(inputNewJobFunction.value); inputNewJobFunction.value=''">add</button>
+          <ul *ngIf="editingJob.jobFunctions.length > 0" class="mv0">
+            <li *ngFor="let jf of editingJob.jobFunctions" class="mt2-l"><span class="db dib-l mv2 mv0-l mr2">{{jf.name}}</span> <button (click)="removeJobFunction(jf)" class="db dib-l">remove</button></li>
+          </ul>
+        </td>
       </tr>
     </table>
 
-    <div class="tr">
+    <div class="tr mb3">
       <button (click)="save()" class="mr2">save</button>
       <button (click)="cancelEdit()">cancel</button>
     </div>

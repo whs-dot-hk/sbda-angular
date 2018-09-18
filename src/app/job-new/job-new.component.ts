@@ -16,13 +16,27 @@ export class JobNewComponent implements OnInit {
   newJobFunctions: JobFunction[] = [];
 
   addNewJobFunction(name: string): void {
+    if (name === '') return;
     var found = this.newJobFunctions.find(x => x.name === name);
-    if (!found) this.newJobFunctions.push({ name } as JobFunction);
+    if (!found) {
+      this.newJobFunctions.push({ name } as JobFunction);
+      this.newJobFunctions = this.newJobFunctions.sort((a , b) => {
+        if (a.name < b.name) return -1;
+        
+        if (a.name > b.name) return 1;
+
+        return 0;
+      });
+    }
   }
 
   errorMessage: string = '';
 
-  addNewJob(newJobTitle: string, newCompanyDetailsName: string, newCompanyDetailsImageUrl: string, newJobRequirements: string): void {
+  newCompanyDetailsName: string = '';
+  newCompanyDetailsImageUrl: string = '';
+  newJobRequirements: string = '';
+
+  addNewJob(newJobTitle: string): void {
     this.errorMessage = '';
     if (newJobTitle === '') {
       this.errorMessage = 'Error: jobTitle is required.'
@@ -31,9 +45,9 @@ export class JobNewComponent implements OnInit {
     this.jobService.addJob({
       noOfVancancies: this.newNoOfVancancies,
       jobTitle: newJobTitle,
-      companyDetailsName: newCompanyDetailsName,
-      companyDetailsImageUrl: newCompanyDetailsImageUrl,
-      jobRequirements: newJobRequirements,
+      companyDetailsName: this.newCompanyDetailsName,
+      companyDetailsImageUrl: this.newCompanyDetailsImageUrl,
+      jobRequirements: this.newJobRequirements,
       noOfYearsOfExperiences: this.newNoOfYearsOfExperiences,
       jobFunctions: this.newJobFunctions
     } as Job)
@@ -50,6 +64,10 @@ export class JobNewComponent implements OnInit {
     this.newNoOfYearsOfExperiences = 0;
 
     this.newJobFunctions = [];
+
+    this.newCompanyDetailsName = '';
+    this.newCompanyDetailsImageUrl = '';
+    this.newJobRequirements = '';
   }
 
   removeNewJobFunction(newJobFunction: JobFunction): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Job } from '../job';
+import { JobFunction } from '../jobFunction';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -35,13 +36,36 @@ export class JobDetailComponent implements OnInit {
     this.jobService.getJob(jobReferenceNo)
       .subscribe(job => {
         job.timeStamp = moment(job.timeStamp).format('DD/MM/YYYY');
+        job.jobFunctions = job.jobFunctions.sort((a , b) => {
+          if (a.name < b.name) return -1;
+          
+          if (a.name > b.name) return 1;
+    
+          return 0;
+        });
         this.job = job;
         this.isLoading = false;
       });
   }
 
   save(): void {
-    this.jobService.updateJob({ jobReferenceNo: this.editingJob.jobReferenceNo, jobTitle: this.editingJob.jobTitle } as Job)
+    if (this.editingJob.jobTitle === '') {
+      this.errorMessage = 'Error: jobTitle is required.';
+      return;
+    }
+
+    const jobFunctions = this.editingJob.jobFunctions.map(jf => ({ name: jf.name }));
+
+    this.jobService.updateJob({
+      noOfVancancies: this.editingJob.noOfVancancies,
+      jobReferenceNo: this.editingJob.jobReferenceNo,
+      jobTitle: this.editingJob.jobTitle,
+      companyDetailsName: this.editingJob.companyDetailsName,
+      companyDetailsImageUrl: this.editingJob.companyDetailsImageUrl,
+      jobRequirements: this.editingJob.jobRequirements,
+      noOfYearsOfExperiences: this.editingJob.noOfYearsOfExperiences,
+      jobFunctions
+    } as Job)
       .subscribe(_ => {
         this.errorMessage = 'Job saved.'
         this.job = Object.assign({}, this.editingJob);
@@ -67,6 +91,23 @@ export class JobDetailComponent implements OnInit {
   cancelEdit(): void {
     this.editingJob = null;
     this.isEditing = false;
+  }
+
+  addNewJobFunction(name: string): void {
+    if (name === '') return;
+    var found = this.editingJob.jobFunctions.find(x => x.name === name);
+    if (!found) this.editingJob.jobFunctions.push({ name } as JobFunction);
+    this.editingJob.jobFunctions = this.editingJob.jobFunctions.sort((a , b) => {
+      if (a.name < b.name) return -1;
+      
+      if (a.name > b.name) return 1;
+
+      return 0;
+    });
+  }
+
+  removeJobFunction(inputJf: JobFunction): void {
+    this.editingJob.jobFunctions = this.editingJob.jobFunctions.filter(jf => jf.name !== inputJf.name);
   }
 
   ngOnInit() {

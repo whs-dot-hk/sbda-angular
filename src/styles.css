@@ -1,15 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
-table, th, td {
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  padding: 15px;
-  width: 50%;
-}
+.b--light-gray, .b--light-gray-l { border-color: #eee; }

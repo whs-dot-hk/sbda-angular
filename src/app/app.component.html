@@ -1,8 +1,9 @@
-<div [ngClass]="'w-50 center'">
-  <h1><a routerLink="/" class="link black">{{title}} 🚀 ❤️</a></h1>
+<div [ngClass]="'w-90 w-50-l center'">
+  <h1><a routerLink="/" class="link black">{{title}} 🚀 <span class="dn dib-l">❤️</span></a></h1>
   <nav>
     <a routerLink="/job" class="link black mr2"><fa-icon [icon]="faListUl"></fa-icon> List Jobs</a>
-    <a routerLink="/job/new" class="link black"><fa-icon [icon]="faPlus"></fa-icon> Add Job</a>
+    <a routerLink="/job/new" class="link black mr2"><fa-icon [icon]="faPlus"></fa-icon> Add Job</a>
+    <a href="https://github.com/whs-dot-hk/starberry-backend-development-assessment" class="link black"><fa-icon [icon]="faExternalLinkAlt"></fa-icon> Github</a>
   </nav>
   <router-outlet></router-outlet>
 </div>

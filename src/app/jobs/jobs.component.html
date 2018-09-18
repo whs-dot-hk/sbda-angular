@@ -1,16 +1,16 @@
 <h2>All Jobs</h2>
-<table *ngIf="jobs.length > 0">
-  <tr>
-    <th>jobTitle:</th>
-    <th>jobReferenceNo:</th>
-    <th>timeStamp:</th>
-    <th>Action</th>
+<table *ngIf="jobs.length > 0" class="collapse w-100">
+  <tr class="dn dt-row-l">
+    <th class="ba b--light-gray pa3 tl">jobTitle:</th>
+    <th class="ba b--light-gray pa3 tl">jobReferenceNo:</th>
+    <th class="ba b--light-gray pa3 tl">timeStamp:</th>
+    <th class="ba b--light-gray pa3 tl">Action</th>
   </tr>
   <tr *ngFor="let job of jobs">
-    <td>{{job.jobTitle}}</td>
-    <td>{{job.jobReferenceNo}}</td>
-    <td>{{job.timeStamp}}</td>
-    <td><a routerLink="/job/{{job.jobReferenceNo}}">View Job</a></td>
+    <td class="w-50 w-25-l ba b--light-gray pa3">{{job.jobTitle}}</td>
+    <td class="dn dtc-l w-25-l ba b--light-gray pa3">{{job.jobReferenceNo}}</td>
+    <td class="dn dtc-l w-25-l ba b--light-gray pa3">{{job.timeStamp}}</td>
+    <td class="w-50 w-25-l ba b--light-gray pa3"><a routerLink="/job/{{job.jobReferenceNo}}">View Job</a></td>
   </tr>
 </table>
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faListUl, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faListUl, faPlus, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +12,5 @@ export class AppComponent {
 
   faListUl = faListUl;
   faPlus = faPlus;
+  faExternalLinkAlt = faExternalLinkAlt;
 }
